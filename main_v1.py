@@ -1,11 +1,14 @@
-from bot import createZoom
 import json
 import shlex
 
-from flask import Flask           # import flask
+# zoom
+from pyzoom import ZoomClient
+from bot import *
+
+from flask import Flask, request           # import flask
 app = Flask(__name__)             # create an app instance
 
-@app.route("/createMeeting" ,methods=['POST']) 
+@app.route("/createMeeting") 
 def createMeeting():
   data = request.get_json()
   
@@ -31,6 +34,15 @@ def createMeeting():
   
   print('{'+str(tempAll[:-1])+'}')
   return(json.loads('{'+str(tempAll[:-1])+'}'))
+
+@app.route("/triggerBot" ,methods=['GET']) 
+def triggerBot():
+  meetId = request.args.get('meetId')
+  passCode = request.args.get('passCode')
+  intervals = request.args.get('intervals')
+  
+  startBot(meetId,passCode,intervals)
+  return "success"
 
 app.run()                    # run the flask app
   
