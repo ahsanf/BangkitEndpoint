@@ -11,7 +11,7 @@ app = Flask(__name__)             # create an app instance
 def hello():
  return "Its Works XXS" 
 
-@app.route("/createMeeting",methods=['POST']) 
+@app.route("/createMeeting", methods=['post']) 
 def createMeeting():
   data = request.get_json()
   
@@ -19,8 +19,8 @@ def createMeeting():
   apiSecret = "Y4gNfLqrJnSLMlHvOfsuFXr5Tr4uMK5GRn8d"
   client = ZoomClient(apiKey, apiSecret)
   
-  topic = request.form['topic']
 #   start_time="2011-10-05T14:48:00.000Z"
+  topic = request.form['topic']
   start_time = request.form['start_time']
   duration_min = 60
   
@@ -52,5 +52,6 @@ def triggerBot():
   startBot(meetId,passCode,intervals)
   return "success"
 
-app.run()                    # run the flask app
+if __name__ == "_main_":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
   
