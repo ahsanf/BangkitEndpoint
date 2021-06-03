@@ -3,7 +3,6 @@ import shlex
 
 # zoom
 from pyzoom import ZoomClient
-from bot import *
 
 from flask import Flask, request           # import flask
 app = Flask(__name__)             # create an app instance
@@ -20,12 +19,17 @@ def createMeeting():
   apiSecret = "Y4gNfLqrJnSLMlHvOfsuFXr5Tr4uMK5GRn8d"
   client = ZoomClient(apiKey, apiSecret)
   
-  response = str(client.meetings.create_meeting(
-    "test topic", 
-    start_time="2011-10-05T14:48:00.000Z", 
-    duration_min=60
+  topic = request.form['topic']
+  start_time = request.form['start_time']
+  
+  response = str(
+    client.meetings.create_meeting(
+        topic, 
+        start_time, 
+        duration_min=60
     )
   )
+  
   responses = shlex.split(response)
   
   tempAll = ""
