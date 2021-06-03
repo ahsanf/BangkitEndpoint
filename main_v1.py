@@ -21,8 +21,8 @@ def createMeeting():
   client = ZoomClient(apiKey, apiSecret)
   
   response = str(client.meetings.create_meeting(
-    data.topic, 
-    start_time=data.star_date, 
+    "test topic", 
+    start_time="2011-10-05T14:48:00.000Z", 
     duration_min=60
     )
   )
