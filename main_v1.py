@@ -39,14 +39,14 @@ def createMeeting():
   print('{'+str(tempAll[:-1])+'}')
   return(json.loads('{'+str(tempAll[:-1])+'}'))
 
-@app.route("/triggerBot" ,methods=['GET']) 
-def triggerBot():
-  meetId = request.args.get('meetId')
-  passCode = request.args.get('passCode')
-  intervals = request.args.get('intervals')
+# @app.route("/triggerBot" ,methods=['GET']) 
+# def triggerBot():
+#   meetId = request.args.get('meetId')
+#   passCode = request.args.get('passCode')
+#   intervals = request.args.get('intervals')
   
-  startBot(meetId,passCode,intervals)
-  return "success"
+#   startBot(meetId,passCode,intervals)
+#   return "success"
 
 app.run()                    # run the flask app
   
