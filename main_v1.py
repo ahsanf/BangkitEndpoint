@@ -1,8 +1,10 @@
 import json
 import shlex
+import os
 
 # zoom
 from pyzoom import ZoomClient
+#from bot import *
 
 from flask import Flask, request           # import flask
 app = Flask(__name__)             # create an app instance
@@ -52,5 +54,6 @@ def createMeeting():
 #   startBot(meetId,passCode,intervals)
 #   return "success"
 
-app.run()                    # run the flask app
-  
+#app.run()                    # run the flask app
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080))) 
