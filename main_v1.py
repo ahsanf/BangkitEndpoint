@@ -8,6 +8,10 @@ from bot import *
 from flask import Flask, request           # import flask
 app = Flask(__name__)             # create an app instance
 
+@app.route("/")
+def hello():
+ return "Its Works" 
+
 @app.route("/createMeeting") 
 def createMeeting():
   data = request.get_json()
