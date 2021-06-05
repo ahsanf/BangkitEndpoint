@@ -1,3 +1,5 @@
+import tensorflow as tf
+
 import json
 import shlex
 
@@ -9,17 +11,14 @@ app = Flask(__name__)             # create an app instance
 
 @app.route("/")
 def hello():
- return "Its Works XXS" 
+ return "ZMood API" 
 
 @app.route("/createMeeting", methods=['post']) 
 def createMeeting():
-  data = request.get_json()
-  
   apiKey = "8hb7N3pVRLS5PWVrGqmOtQ"
   apiSecret = "Y4gNfLqrJnSLMlHvOfsuFXr5Tr4uMK5GRn8d"
   client = ZoomClient(apiKey, apiSecret)
   
-#   start_time="2011-10-05T14:48:00.000Z"
   topic = request.form['topic']
   start_time = request.form['start_time']
   duration_min = 60
@@ -51,6 +50,13 @@ def triggerBot():
   
   startBot(meetId,passCode,intervals)
   return "success"
+
+@app.route("/checkTensor", methods=['GET'])
+def checkTensor():
+  device_name = tf.test.gpu_device_name()
+  if device_name != '/device:GPU:0':
+    return('GPU device not found')
+  return('Found GPU at: {}'.format(device_name))
 
 if __name__ == "_main_":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
