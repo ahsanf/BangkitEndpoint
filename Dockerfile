@@ -11,12 +11,11 @@ WORKDIR $APP_HOME
 COPY . ./
 
 # Install production dependencies.
-RUN pip install Flask gunicorn
-RUN pip install pyzoom
-RUN pip install tensorflow
-RUN pip install opencv-python
-RUN pip install fer
-RUN pip install -r requirements.txt
+RUN pip3 install Flask gunicorn
+RUN pip3 install pyzoom
+RUN pip3 install tensorflow
+RUN pip3 install opencv-python
+RUN pip3 install fer
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
