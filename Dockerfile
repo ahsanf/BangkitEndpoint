@@ -15,10 +15,7 @@ RUN pip install Flask gunicorn
 RUN pip install pyzoom
 RUN pip install pyautogui
 RUN pip install tensorflow
-<<<<<<< HEAD
 RUN pip install fer
-=======
->>>>>>> f4ca6d9ce2c1ce05afb2cb2158d7b9585881a020
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
