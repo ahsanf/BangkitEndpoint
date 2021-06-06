@@ -13,9 +13,9 @@ COPY . ./
 # Install production dependencies.
 RUN pip install Flask gunicorn
 RUN pip install pyzoom
-RUN pip install pyautogui
 RUN pip install tensorflow
-RUN pip install -U opencv-python
+RUN pip install opencv-python
+RUN pip install fer
 RUN apt-get upgrade
 RUN apt update && apt install -y libsm6 libxext6 ffmpeg libfontconfig1 libxrender1 libgl1-mesa-glx
 

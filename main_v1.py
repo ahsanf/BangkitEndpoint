@@ -3,6 +3,7 @@ import cv2
 
 import json
 import shlex
+from fer import FER
 
 # zoom
 from pyzoom import ZoomClient
