@@ -1,4 +1,4 @@
-# Use the official lightweight Python image.
+# Use the official lightweight Python image.     
 # https://hub.docker.com/_/python
 FROM python:3.9-slim
 
@@ -14,6 +14,7 @@ COPY . ./
 RUN pip install Flask gunicorn
 RUN pip install pyzoom
 RUN pip install pyautogui
+RUN pip install tensorflow
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
