@@ -15,13 +15,6 @@ RUN pip install Flask gunicorn
 RUN pip install pyzoom
 RUN pip install tensorflow
 RUN pip install opencv-python
-<<<<<<< HEAD
-RUN pip install fer
-=======
->>>>>>> 84ea2092828d2abf7cb025a56afe3c189062d462
-RUN apt-get upgrade
-RUN apt update && apt install -y libsm6 libxext6 ffmpeg libfontconfig1 libxrender1 libgl1-mesa-glx
-
 RUN pip install fer
 
 # Run the web service on container startup. Here we use the gunicorn
