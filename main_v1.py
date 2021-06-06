@@ -53,11 +53,16 @@ def triggerBot():
 
 @app.route("/checkTensor", methods=['GET'])
 def checkTensor():
-  device_name = tf.test.gpu_device_name()
-  if device_name != '/device:GPU:0':
-    return('GPU device not found')
-  return('Found GPU at: {}'.format(device_name))
+  img = cv2.imread("participantFace_2.png")
+
+  # Face detection
+  detector = FER()
+  detector.detect_emotions(img)
+
+  expression, score = detector.top_emotion(img)
+
+  return(str(expression)+"-"+str(score))
 
 if __name__ == "_main_":
-    app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+  app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
   
