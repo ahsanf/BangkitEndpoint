@@ -1,5 +1,4 @@
 import tensorflow as tf
-import cv2
 
 import json
 import shlex
@@ -7,6 +6,9 @@ from fer import FER
 
 # zoom
 from pyzoom import ZoomClient
+
+import cv2
+
 
 from flask import Flask, request           # import flask
 app = Flask(__name__)             # create an app instance
