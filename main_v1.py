@@ -58,7 +58,7 @@ def triggerBot():
 #  startBot(meetId,passCode,intervals)
   return "success"
 
-@app.route("/predict", methods=['GET'])
+@app.route("/predict", methods=['POST'])
 def predict():
   # img = cvx.imread("participantFace_2.png")
   img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
