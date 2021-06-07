@@ -64,7 +64,7 @@ def predict():
   img = cvx.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cvx.IMREAD_UNCHANGED)
 
   # Face detection
-  detector = FER(mtcnn=True)
+  detector = FER()
   detector.detect_emotions(img)
 
   expression, score = detector.top_emotion(img)
