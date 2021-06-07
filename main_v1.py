@@ -3,11 +3,11 @@
 from pyzoom import ZoomClient
 
 import tensorflow as tf
-import cv2
+import cv2 as cvx
 import json
 import shlex
 import numpy
-from PIL import Image
+import os
 from fer import FER
 
 from flask import Flask, request           # import flask
@@ -55,16 +55,16 @@ def triggerBot():
   passCode = request.args.get('passCode')
   intervals = request.args.get('intervals')
   
-  startBot(meetId,passCode,intervals)
+#  startBot(meetId,passCode,intervals)
   return "success"
 
-@app.route("/predict", methods=['POST'])
+@app.route("/predict", methods=['GET'])
 def predict():
   # file = request.files['participant']
 
   # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  # img = cv2.imread("participantFace_2.png")
-  img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
+  img = cvx.imread("participantFace_2.png")
+  #img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
 
   # Face detection
   detector = FER()
