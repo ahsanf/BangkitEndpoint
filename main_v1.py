@@ -60,14 +60,11 @@ def triggerBot():
 
 @app.route("/predict", methods=['GET'])
 def predict():
-  # file = request.files['participant']
-
-  # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-  img = cvx.imread("participantFace_2.png")
-  #img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
+  # img = cvx.imread("participantFace_2.png")
+  img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
 
   # Face detection
-  detector = FER()
+  detector = FER(mtcnn=True)
   detector.detect_emotions(img)
 
   expression, score = detector.top_emotion(img)
