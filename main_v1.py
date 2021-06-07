@@ -61,7 +61,7 @@ def triggerBot():
 @app.route("/predict", methods=['post']) 
 def predict():
   # img = cvx.imread("participantFace_2.png")
-  img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
+  img = cvx.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cvx.IMREAD_UNCHANGED)
 
   # Face detection
   detector = FER(mtcnn=True)
