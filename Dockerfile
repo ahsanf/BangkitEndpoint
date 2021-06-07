@@ -19,6 +19,8 @@ RUN pip3 install opencv-python
 RUN pip3 install fer
 RUN pip3 install numpy
 RUN apt-get update
+RUN apt-get install ffmpeg libsm6 libxext6  -y
+
 
 # Run the web service on container startup. Here we use the gunicorn
 # webserver, with one worker process and 8 threads.
