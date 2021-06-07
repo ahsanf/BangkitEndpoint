@@ -6,10 +6,15 @@ import tensorflow as tf
 import cv2
 import json
 import shlex
+import numpy
+from PIL import Image
 from fer import FER
 
 from flask import Flask, request           # import flask
+
+UPLOAD_FOLDER = '/rawImage'
 app = Flask(__name__)             # create an app instance
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def hello():
@@ -53,9 +58,13 @@ def triggerBot():
   startBot(meetId,passCode,intervals)
   return "success"
 
-@app.route("/checkTensor", methods=['GET'])
-def checkTensor():
-  img = cv2.imread("participantFace_2.png")
+@app.route("/predict", methods=['POST'])
+def predict():
+  # file = request.files['participant']
+
+  # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+  # img = cv2.imread("participantFace_2.png")
+  img = cv2.imdecode(numpy.fromstring(request.files['participant'].read(), numpy.uint8), cv2.IMREAD_UNCHANGED)
 
   # Face detection
   detector = FER()
@@ -63,7 +72,13 @@ def checkTensor():
 
   expression, score = detector.top_emotion(img)
 
-  return(str(expression)+"-"+str(score))
+  return {
+    "status": "success",
+    "data": {
+      "expression": expression,
+      "score": score
+    }
+  }
 
 if __name__ == "_main_":
   app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
