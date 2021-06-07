@@ -11,6 +11,7 @@ WORKDIR $APP_HOME
 COPY . ./
 
 # Install production dependencies.
+RUN pip3 install --upgrade setuptools pip
 RUN pip3 install Flask gunicorn
 RUN pip3 install pyzoom
 RUN pip3 install tensorflow
