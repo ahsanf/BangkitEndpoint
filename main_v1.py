@@ -65,9 +65,13 @@ def predict():
 
   # Face detection
   detector = FER()
-  detector.detect_emotions(img)
+  expressionDetect = detector.detect_emotions(img)
 
-  expression, score = detector.top_emotion(img)
+  expression = "inactive"
+  score = 0
+
+  if(len(expressionDetect) > 0):
+    expression, score = detector.top_emotion(img)  
 
   return {
     "status": "success",
