@@ -67,7 +67,7 @@ def predict():
   detector = FER()
   expressionDetect = detector.detect_emotions(img)
 
-  expression = "inactive"
+  expression = "neutral"
   score = 0
 
   if(len(expressionDetect) > 0):
