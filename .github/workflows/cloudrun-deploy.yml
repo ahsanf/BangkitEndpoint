@@ -36,3 +36,4 @@ jobs:
         gcloud run deploy flaskappzm --image gcr.io/${{ secrets.GCP_PROJECT }}/${{ secrets.GCP_APPLICATION }} \
         --platform managed \
         --allow-unauthenticated \
+        --memory 2Gi
